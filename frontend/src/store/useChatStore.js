@@ -25,6 +25,10 @@ export const useChatStore = create((set, get) =>
     }
   },
   getMessages: async (userId) => {
+    if (!userId) {
+      toast.error("No user selected for messages");
+      return;
+    }
     set({ isMessagesLoading: true })
     try {
       const res = await axiosInstance.get(`/messages/${userId}`);
@@ -38,27 +42,27 @@ export const useChatStore = create((set, get) =>
     }
   },
   sendMessage: async (messageData) => {
-  const { selectedUser, messages } = get();
-  if (!selectedUser) {
-    toast.error("No user selected");
-    return;
-  }
-
-  try {
-    const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
-    console.log("Axios response:", res);
-
-    if (res?.data) {
-      set({ messages: [...(Array.isArray(messages) ? messages : []), res.data] });
-    } else {
-      console.error("Invalid response: no data");
-      toast.error("Server did not return a valid message");
+    const { selectedUser, messages } = get();
+    if (!selectedUser) {
+      toast.error("No user selected");
+      return;
     }
-  } catch (error) {
-    console.error("Failed to send message:", error);
-    toast.error(error.response?.data?.message || "Failed to send message");
-  }
-},
+
+    try {
+      const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
+      console.log("Axios response:", res);
+
+      if (res?.data) {
+        set({ messages: [...(Array.isArray(messages) ? messages : []), res.data] });
+      } else {
+        console.error("Invalid response: no data");
+        toast.error("Server did not return a valid message");
+      }
+    } catch (error) {
+      console.error("Failed to send message:", error);
+      toast.error(error.response?.data?.message || "Failed to send message");
+    }
+  },
 
   //listen to messages
   subscribeToMessages: () => {
