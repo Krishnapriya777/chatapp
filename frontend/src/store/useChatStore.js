@@ -43,7 +43,7 @@ export const useChatStore = create((set, get) =>
   },
   sendMessage: async (messageData) => {
     const { selectedUser, messages } = get();
-    if (!selectedUser) {
+    if (!selectedUser || !selectedUser._id) {
       toast.error("No user selected");
       return;
     }
