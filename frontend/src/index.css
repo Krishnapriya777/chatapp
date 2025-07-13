@@ -1,0 +1,85 @@
+@import "tailwindcss";
+/* Default light theme */
+:root {
+  --color-base: #ffffff;
+  --color-text: #111111;
+  --color-primary: #3b82f6; /* blue-500 */
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --color-base: #111111;
+  --color-text: #f5f5f5;
+  --color-primary: #6366f1; /* indigo-500 */
+}
+
+/* You can add more themes: */
+[data-theme="retro"] {
+  --color-base: #fdf6e3;
+  --color-text: #657b83;
+  --color-primary: #b58900;
+}
+
+[data-theme="forest"] {
+  --color-base: #e6f2e6;
+  --color-text: #1b4332;
+  --color-primary: #40916c;
+}
+
+[data-theme="pastel"] {
+  --color-base: #fef6fb;
+  --color-text: #444444;
+  --color-primary: #f3b1c9;
+}
+
+[data-theme="halloween"] {
+  --color-base: #1b1b1b;
+  --color-text: #fefefe;
+  --color-primary: #f97316; /* orange-500 */
+}
+
+[data-theme="dracula"] {
+  --color-base: #282a36;
+  --color-text: #f8f8f2;
+  --color-primary: #bd93f9;
+}
+
+[data-theme="luxury"] {
+  --color-base: #1f2937;
+  --color-text: #d1d5db;
+  --color-primary: #facc15; /* yellow-400 */
+}
+
+[data-theme="aqua"] {
+  --color-base: #e0f7fa;
+  --color-text: #004d40;
+  --color-primary: #00acc1;
+}
+
+[data-theme="sunset"] {
+  --color-base: #fff7f0;
+  --color-text: #5c2a0c;
+  --color-primary: #f97316; /* orange-500 */
+}
+
+[data-theme="night"] {
+  --color-base: #0f172a;
+  --color-text: #f1f5f9;
+  --color-primary: #3b82f6;
+}
+.bg-theme {
+  background-color: var(--color-base);
+}
+
+.text-theme {
+  color: var(--color-text);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
