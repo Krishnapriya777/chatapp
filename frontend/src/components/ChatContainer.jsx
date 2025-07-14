@@ -21,9 +21,11 @@ const ChatContainer = () => {
   useEffect(() => {
     if (selectedUser?._id) {
       getMessages(selectedUser._id);
-      subscribeToMessages();
-      return () => unsubscribeFromMessages();
+      subscribeToMessages(selectedUser._id);
     }
+    return () => {
+      unsubscribeFromMessages();
+    };
   }, [selectedUser?._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
 
   useEffect(() => {
@@ -75,7 +77,11 @@ const ChatContainer = () => {
                   )}
                   {message.text && <p>{message.text}</p>}
                 </div>
-                <div className={`text-xs text-zinc-500 mt-1 ${isSent ? "text-right" : "text-left"}`}>
+                <div
+                  className={`text-xs text-zinc-500 mt-1 ${
+                    isSent ? "text-right" : "text-left"
+                  }`}
+                >
                   {formatMessageTime(message.createdAt)}
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import recat from "react";
+import react from "react";
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import AuthImagePattern from "../components/AuthImagePattern";
